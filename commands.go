@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/fatih/color"
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
 func setCommands(app *cli.App) {
-	app.Commands = []cli.Command{
+	app.Commands = []*cli.Command{
 		{
 			Name:    "new",
 			Aliases: []string{"c"},
