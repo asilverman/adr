@@ -118,8 +118,9 @@ func getConfig() AdrConfig {
 }
 
 func newAdr(config AdrConfig, adrName cli.Args) {
+	realSlice := []string(adrName)
 	adr := Adr{
-		Title:  strings.Join(adrName, " "),
+		Title:  strings.Join(realSlice, " "),
 		Date:   time.Now().Format(config.DateLayout),
 		Number: config.CurrentAdr,
 		Status: PROPOSED,
