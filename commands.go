@@ -34,7 +34,7 @@ func setCommands(app *cli.App) {
 				}
 				color.Green("Initializing ADR base at " + initDir)
 				initBaseDir(initDir)
-				initConfig(initDir)
+				initConfig(initDir, adrDefaultDateLayout)
 				initTemplate()
 				return nil
 			},

@@ -5,11 +5,9 @@ Greatly inspired by the [adr-tools](https://github.com/npryce/adr-tools) with al
 
 # Quick start
 ## Installing adr
-Go to the [releases page](https://github.com/marouni/adr/releases) and grab one of the binaries that corresponds to your platform.
 
-Alternatively, if you have a Go developement environment setup you can install it directly using :
 ```bash
-go install github.com/marouni/adr
+go install github.com/asilverman/adr
 ```
 
 

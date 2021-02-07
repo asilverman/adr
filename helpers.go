@@ -18,6 +18,7 @@ import (
 type AdrConfig struct {
 	BaseDir    string `json:"base_directory"`
 	CurrentAdr int    `json:"current_id"`
+	DateLayout string `json:"date_layout"`
 }
 
 // Adr basic structure
@@ -47,6 +48,7 @@ var adrConfigFolderPath = filepath.Join(usr.HomeDir, adrConfigFolderName)
 var adrConfigFilePath = filepath.Join(adrConfigFolderPath, adrConfigFileName)
 var adrTemplateFilePath = filepath.Join(adrConfigFolderPath, adrConfigTemplateName)
 var adrDefaultBaseFolder = filepath.Join(usr.HomeDir, "adr")
+var adrDefaultDateLayout = "2006-01-02"
 
 func initBaseDir(baseDir string) {
 	if _, err := os.Stat(baseDir); os.IsNotExist(err) {
@@ -56,11 +58,11 @@ func initBaseDir(baseDir string) {
 	}
 }
 
-func initConfig(baseDir string) {
+func initConfig(baseDir, dateLayout string) {
 	if _, err := os.Stat(adrConfigFolderPath); os.IsNotExist(err) {
 		os.Mkdir(adrConfigFolderPath, 0744)
 	}
-	config := AdrConfig{baseDir, 0}
+	config := AdrConfig{baseDir, 0, dateLayout}
 	bytes, err := json.MarshalIndent(config, "", " ")
 	if err != nil {
 		panic(err)
@@ -117,7 +119,7 @@ func getConfig() AdrConfig {
 func newAdr(config AdrConfig, adrName []string) {
 	adr := Adr{
 		Title:  strings.Join(adrName, " "),
-		Date:   time.Now().Format("02-01-2006 15:04:05"),
+		Date:   time.Now().Format(config.DateLayout),
 		Number: config.CurrentAdr,
 		Status: PROPOSED,
 	}
