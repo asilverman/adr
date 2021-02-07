@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/urfave/cli"
 )
 
 // AdrConfig ADR configuration, loaded and used by each sub-command
@@ -116,7 +117,7 @@ func getConfig() AdrConfig {
 	return currentConfig
 }
 
-func newAdr(config AdrConfig, adrName []string) {
+func newAdr(config AdrConfig, adrName cli.Args) {
 	adr := Adr{
 		Title:  strings.Join(adrName, " "),
 		Date:   time.Now().Format(config.DateLayout),
